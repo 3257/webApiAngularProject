@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace WebApplication1.Models
 {
@@ -10,14 +12,25 @@ namespace WebApplication1.Models
 
         public MapRepository()
         {
-            Add(new Map("Gym1", "Gym1", "Sofia,Bulgaria", "Best gym in Sofia"));
-            Add(new Map("Gym2", "Gym2", "Dobrich,Bulgaria", "Best gym in Dobrich"));
-            Add(new Map("Gym3", "Gym3", "Pernik,Bulgaria", "Best gym in Pernik"));
+            var map1 =new Map("Gym1", "Gym1", "Sofia,Bulgaria", "Best gym in Sofia");
+            var map2 =new Map("Gym2", "Gym2", "Dobrich,Bulgaria", "Best gym in Dobrich");
+            var map3 =new Map("Gym3", "Gym3", "Pernik,Bulgaria", "Best gym in Pernik");
+            maps.Add(map1);
+            maps.Add(map2);
+            maps.Add(map3);
+            // Serializing the gyms as a collection
+
+            File.WriteAllText(@"c:\data\db2.json", JsonConvert.SerializeObject(maps));
+
         }
 
         public IEnumerable<Map> GetAll()
         {
-            return maps;
+            // De-Serializing the gyms as a collection
+
+            var theMaps = JsonConvert.DeserializeObject<List<Map>>(File.ReadAllText(@"c:\data\db2.json"));
+
+            return theMaps;
         }
 
         public Map Get(string id)
