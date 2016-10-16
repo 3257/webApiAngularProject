@@ -30,6 +30,10 @@ namespace WebApplication1
     {
         public static void Register(HttpConfiguration config)
         {
+            var enableCorsAttribute = new EnableCorsAttribute("*",
+                                               "Origin, Content-Type, Accept",
+                                               "GET, PUT, POST, DELETE, OPTIONS");
+            config.EnableCors(enableCorsAttribute);
 
             // Web API configuration and services 
             config.Formatters.Add(new BrowserJsonFormatter());

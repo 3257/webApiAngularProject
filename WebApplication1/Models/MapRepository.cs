@@ -46,17 +46,22 @@ namespace WebApplication1.Models
             }
 
             maps.Add(item);
+            File.WriteAllText(@"c:\data\db2.json", JsonConvert.SerializeObject(maps));
             return item;
         }
 
         public void Remove(string id)
         {
             maps.RemoveAll(p => p.Id.ToLower() == id.ToLower());
+            File.WriteAllText(@"c:\data\db2.json", JsonConvert.SerializeObject(maps));
+
         }
 
         public void RemoveAll()
         {
             maps.Clear();
+            File.WriteAllText(@"c:\data\db2.json", JsonConvert.SerializeObject(maps));
+
         }
     }
 }
