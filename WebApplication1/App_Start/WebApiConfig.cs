@@ -35,9 +35,9 @@ namespace WebApplication1
                 "*");
             config.EnableCors(enableCorsAttribute);
 
-            // Web API configuration and services 
+            // Web API configuration and services.
             config.Formatters.Add(new BrowserJsonFormatter());
-            // Web API routes
+            // Web API routes.
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

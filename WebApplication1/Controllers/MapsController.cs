@@ -23,6 +23,7 @@ namespace WebApplication1.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
+
             return item;
         }
 
@@ -44,6 +45,7 @@ namespace WebApplication1.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
+
             Repository.Remove(id);
         }
 

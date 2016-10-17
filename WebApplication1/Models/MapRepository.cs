@@ -12,7 +12,7 @@ namespace WebApplication1.Models
 
         public List<Map> GetAll()
         {
-            // De-Serializing the gyms as a collection
+            // De-Serializing the gyms as a collection.
             maps = DeserializeMapsFromFile(Url);
             return maps;
         }
@@ -47,7 +47,7 @@ namespace WebApplication1.Models
             SerializeMapsToFile(Url, maps);
         }
 
-        private void SerializeMapsToFile(string urlLink, List<Map> mapsList)
+        private static void SerializeMapsToFile(string urlLink, List<Map> mapsList)
         {
             File.WriteAllText(urlLink, JsonConvert.SerializeObject(mapsList));
         }
