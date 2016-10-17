@@ -7,30 +7,39 @@ namespace WebApplication1.Models
 {
     public class MapRepository : IMapRepository
     {
+        public const string Url = @"C:\Users\Deyan\Source\Repos\webApiAngularProject\WebApplication1\App_Data\db2.json";
         private readonly List<Map> maps = new List<Map>();
- 
 
         public MapRepository()
         {
-            var map1 =new Map("Gym1", "Gym1", "Sofia,Bulgaria", "Best gym in Sofia");
-            var map2 =new Map("Gym2", "Gym2", "Dobrich,Bulgaria", "Best gym in Dobrich");
-            var map3 =new Map("Gym3", "Gym3", "Pernik,Bulgaria", "Best gym in Pernik");
-            maps.Add(map1);
-            maps.Add(map2);
-            maps.Add(map3);
-            // Serializing the gyms as a collection
+            //var map1 = new Map("Gym1", "Gym1", "Sofia,Bulgaria", "Best gym in Sofia");
+            //var map2 = new Map("Gym2", "Gym2", "Dobrich,Bulgaria", "Best gym in Dobrich");
+            //var map3 = new Map("Gym3", "Gym3", "Pernik,Bulgaria", "Best gym in Pernik");
 
-            File.WriteAllText(@"c:\data\db2.json", JsonConvert.SerializeObject(maps));
+            //maps.Add(map1);
+            //maps.Add(map2);
+            //maps.Add(map3);
 
+            //// Serializing the gyms as a collection initially
+            //SerializeMapsToFile(Url,maps);
+
+        }
+
+        private void SerializeMapsToFile(string urlLink,List<Map> mapsList)
+        {
+            File.WriteAllText(urlLink, JsonConvert.SerializeObject(mapsList));
         }
 
         public IEnumerable<Map> GetAll()
         {
             // De-Serializing the gyms as a collection
+            var allMaps = DeserializeMapsFromFile(Url);
+            return allMaps;
+        }
 
-            var theMaps = JsonConvert.DeserializeObject<List<Map>>(File.ReadAllText(@"c:\data\db2.json"));
-
-            return theMaps;
+        private static IEnumerable<Map> DeserializeMapsFromFile(string urlLink)
+        {
+            return JsonConvert.DeserializeObject<List<Map>>(File.ReadAllText(urlLink));
         }
 
         public Map Get(string id)
@@ -46,21 +55,22 @@ namespace WebApplication1.Models
             }
 
             maps.Add(item);
-            File.WriteAllText(@"c:\data\db2.json", JsonConvert.SerializeObject(maps));
+            SerializeMapsToFile(Url, maps);
             return item;
         }
 
         public void Remove(string id)
         {
             maps.RemoveAll(p => p.Id.ToLower() == id.ToLower());
-            File.WriteAllText(@"c:\data\db2.json", JsonConvert.SerializeObject(maps));
 
+            SerializeMapsToFile(Url, maps);
         }
 
         public void RemoveAll()
         {
             maps.Clear();
-            File.WriteAllText(@"c:\data\db2.json", JsonConvert.SerializeObject(maps));
+            SerializeMapsToFile(Url, maps);
+
 
         }
     }
