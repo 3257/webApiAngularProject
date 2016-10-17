@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace WebApplication1.Models
 {
-    interface IMapRepository
+    internal interface IMapRepository
     {
-
-        IEnumerable<Map> GetAll();
+        List<Map> GetAll();
         Map Get(string id);
         Map Add(Map item);
         void Remove(string id);
