@@ -131,6 +131,8 @@
     <Compile Include="Models\IMapRepository.cs" />
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\MapRepository.cs" />
+    <Compile Include="Models\UtilityClasses\MapsWrapper.cs" />
+    <Compile Include="Models\UtilityClasses\Serializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
