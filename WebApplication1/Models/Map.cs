@@ -31,6 +31,7 @@ namespace WebApplication1.Models
                 {
                     throw new ArgumentNullException("Id cannot be null");
                 }
+
                 this.id = value;
             }
         }
@@ -48,6 +49,12 @@ namespace WebApplication1.Models
                 {
                     throw new ArgumentNullException("Name cannot be null");
                 }
+
+                if (value.Length<3||value.Length>15)
+                {
+                    throw new ArgumentOutOfRangeException("Name must be between 3 and 15 letters long");
+                }
+
                 this.name = value;
             }
         }
@@ -65,6 +72,11 @@ namespace WebApplication1.Models
                 {
                     throw new ArgumentNullException("Address cannot be null");
                 }
+                if (value.Length < 3 || value.Length > 25)
+                {
+                    throw new ArgumentOutOfRangeException("Address must be between 3 and 25 letters long");
+                }
+
                 this.address = value;
             }
         }
@@ -82,6 +94,11 @@ namespace WebApplication1.Models
                 {
                     throw new ArgumentNullException("Description cannot be null");
                 }
+                if (value.Length < 3 || value.Length > 30)
+                {
+                    throw new ArgumentOutOfRangeException("Description must be between 3 and 30 letters long");
+                }
+
                 this.description = value;
             }
         }
