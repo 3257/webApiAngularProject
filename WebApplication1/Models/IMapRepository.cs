@@ -4,7 +4,7 @@ namespace WebApplication1.Models
 {
     internal interface IMapRepository
     {
-        List<Map> GetAll();
+        IEnumerable<Map> GetAll();
         Map Get(string id);
         Map Add(Map item);
         void Remove(string id);

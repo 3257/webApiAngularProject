@@ -6,14 +6,14 @@ namespace WebApplication1.Models
 {
     public class MapRepository : IMapRepository
     {
-        public const string Url = @"C:\Users\yboyanov\Desktop\DidoAngularProjectWithNet\webApiAngularProject\WebApplication1\App_Data\db.json";
+        public const string Url = @"C:\Users\Deyan\Source\Repos\webApiAngularProject\WebApplication1\App_Data\db.json";
 
         private readonly MapsWrapper mapsWrapper = new MapsWrapper
         {
             MapsData = new List<Map>()
         };
 
-        public List<Map> GetAll()
+        public IEnumerable<Map> GetAll()
         {
             // De-Serializing the gyms as coming from fake DB a collection.
             mapsWrapper.MapsData = Serializer.DeserializeMapsFromFile(Url);
